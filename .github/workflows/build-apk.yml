@@ -17,10 +17,19 @@ jobs:
           java-version: '17'
       - run: npx expo prebuild --platform android --clean
       
-      - name: Fix splashscreen color (CRIA COR QUE FALTA)
+      - name: Fix colors (CRIA TODAS AS CORES QUE FALTAM)
         run: |
           mkdir -p android/app/src/main/res/values
-          echo '<?xml version="1.0" encoding="utf-8"?><resources><color name="splashscreen_background">#000000</color><color name="splashscreen_background_dark">#000000</color></resources>' > android/app/src/main/res/values/colors.xml
+          cat > android/app/src/main/res/values/colors.xml << 'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <resources>
+            <color name="splashscreen_background">#000000</color>
+            <color name="splashscreen_background_dark">#000000</color>
+            <color name="colorPrimary">#000000</color>
+            <color name="colorPrimaryDark">#000000</color>
+            <color name="colorAccent">#FFA500</color>
+          </resources>
+          EOF
           cat android/app/src/main/res/values/colors.xml
       
       - run: |
