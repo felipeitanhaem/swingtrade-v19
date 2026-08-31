@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Swing Trade V19 TAG25",
+    "slug": "swingtrade-v19-tag25",
+    "version": "19.0.0",
+    "android": {
+      "package": "com.swingtrade.v19tag25",
+      "versionCode": 190
+    }
+  }
+}
