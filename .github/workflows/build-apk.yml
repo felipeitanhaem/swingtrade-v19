@@ -1,6 +1,7 @@
 name: Gerar APK Automatico
 on:
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,11 +16,19 @@ jobs:
           distribution: temurin
           java-version: '17'
       - run: npx expo prebuild --platform android --clean
+      
+      - name: Fix splashscreen color (CRIA COR QUE FALTA)
+        run: |
+          mkdir -p android/app/src/main/res/values
+          echo '<?xml version="1.0" encoding="utf-8"?><resources><color name="splashscreen_background">#000000</color><color name="splashscreen_background_dark">#000000</color></resources>' > android/app/src/main/res/values/colors.xml
+          cat android/app/src/main/res/values/colors.xml
+      
       - run: |
           cd android
           chmod +x gradlew
           ./gradlew assembleRelease
+          
       - uses: actions/upload-artifact@v4
         with:
-          name: APK
+          name: SwingTrade-V19-TAG25-APK
           path: android/app/build/outputs/apk/release/app-release.apk
